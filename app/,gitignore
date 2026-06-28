@@ -1,0 +1,16 @@
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.sqlite3
+db.sqlite3
+
+UserImages/
+static/assets/audio/
+
+*.h5
+*.pb
+
+.vscode/
+.idea/

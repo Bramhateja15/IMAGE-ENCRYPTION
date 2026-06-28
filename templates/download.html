@@ -1,0 +1,146 @@
+{% extends "home.html" %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter OTP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+           
+            
+        }
+
+        .otp-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+            margin: 150px auto;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .otp-input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 24px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .otp-input:focus {
+            border-color: #4CAF50;
+        }
+
+        .otp-input:valid {
+            border-color: #4CAF50;
+        }
+
+        .otp-input:invalid {
+            border-color: #f44336;
+        }
+
+        .otp-submit {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .otp-submit:hover {
+            background-color: #45a049;
+        }
+
+        .resend {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .resend a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .resend a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="otp-container">
+    {% if messages %}
+            {% for message in messages %}
+                <center><p class="alert alert-success">{{ message }}</p></center>
+            {% endfor %}
+        {% endif %}
+    <h2>Enter OTP</h2>
+    <form action="{% url 'download' id %}" method="post">
+        {% csrf_token %}
+    <div class="otp-inputs">
+        <input type="text" maxlength="1" class="otp-input" id="otp1" name="otp1" oninput="moveFocus(otp1, otp2)">
+        <input type="text" maxlength="1" class="otp-input" id="otp2" name="otp2" oninput="moveFocus(otp2, otp3)">
+        <input type="text" maxlength="1" class="otp-input" id="otp3" name="otp3" oninput="moveFocus(otp3, otp4)">
+        <input type="text" maxlength="1" class="otp-input" id="otp4" name="otp4" oninput="moveFocus(otp4, otp5)">
+        <input type="text" maxlength="1" class="otp-input" id="otp5" name="otp5" oninput="moveFocus(otp5, otp6)">
+        <input type="text" maxlength="1" class="otp-input" id="otp6" name="otp6" oninput="moveFocus(otp6, null)">
+    </div>
+    <button type="submit" class="otp-submit" >Submit OTP</button>
+</form>
+    <!-- <div class="resend">
+        <p>Didn't receive the OTP? <a href="#" onclick="resendOtp()">Resend OTP</a></p>
+    </div> -->
+</div>
+
+<script>
+    function moveFocus(currentInput, nextInput) {
+        if (currentInput.value.length == currentInput.maxLength) {
+            if (nextInput) {
+                nextInput.focus();
+            }
+        }
+    }
+
+    function submitOtp() {
+        let otp = '';
+        for (let i = 1; i <= 6; i++) {
+            otp += document.getElementById('otp' + i).value;
+        }
+        if (otp.length === 6) {
+            alert("OTP submitted: " + otp);
+        } else {
+            alert("Please enter a valid 6-digit OTP.");
+        }
+    }
+
+    function resendOtp() {
+        alert("OTP has been resent!");
+    }
+</script>
+
+</body>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% block content %}
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">About</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li class="current">About</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- About 2 Section -->
+    <section id="about-2" class="about-2 section">
+
+      <div class="container" data-aos="fade-up">
+
+        <div class="row g-4 g-lg-5" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-5">
+            <div class="about-imgd">
+              <img src="/static/assets/img/p4.png" class="img-fluid" alt="" style="height: 400px; margin-top: 50px;">
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <h3 class="pt-0 pt-lg-5">AN IMAGE ENCRYPTION ALGORITHM BY USING SECURE KEY GENERATION TECHNIQUES </h3>
+
+     
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+
+              <div class="tab-pane fade show active" id="about-2-tab1">
+
+                <p class="fst-italic">  
+              
+                  To enhance security and authentication, this system integrates Elliptic Curve Cryptography (ECC) for image encryption and Local Binary Pattern Histogram (LBPH) for live face authentication during both registration and login. ECC offers high security with smaller key sizes, making it ideal for resource-constrained environments by ensuring encrypted visual data remains confidential with minimal computational overhead compared to traditional methods like AES. Meanwhile, LBPH provides robust real-time face recognition, resilient to changes in lighting and facial expressions, ensuring reliable biometric authentication. The combination of ECC and LBPH strengthens user access control by safeguarding data confidentiality and enabling seamless, secure authentication. Performance evaluations demonstrate notable improvements in speed, accuracy, and efficiency, making the system well-suited for real-time security applications.
+                              </p>
+
+             
+              </div><!-- End Tab 1 Content -->
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About 2 Section -->
+{% endblock %}
